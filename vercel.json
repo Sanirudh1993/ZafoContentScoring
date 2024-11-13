@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "app.py",  // Path to your main Python script
+      "use": "@vercel/python"
+    }
+  ],
+  "build": {
+    "env": {
+      "MY_ENV_VAR": "value"
+    },
+    "commands": [
+      "pip install -r requirements.txt",  // Install dependencies (although Vercel does this by default)
+      "python -m script_to_preprocess_models",  // If you have any preprocessing step, for example
+      "python manage.py collectstatic"  // If you need to collect static files
+    ]
+  },
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/app.py"
+    }
+  ]
+}
